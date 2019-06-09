@@ -6,7 +6,8 @@ module.exports = db.sequelize.define(
   {
     id_event : {
       type: Sequelize.INTEGER,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement : true
     },
     event_name : {
       type : Sequelize.STRING

@@ -38,7 +38,6 @@ Pictures.belongsTo(Places, {
 router.get('/', (req, res, next) => {
   User.findAll()
   .then(users => {
-    console.log(users)
     res.json(users)
   })
   .catch(error => {
@@ -58,7 +57,6 @@ router.get('/events/:id', (req, res, next) => {
      }]
   })
   .then(events => {
-    console.log(events)
     res.json(events)
   })
   .catch(error => {
@@ -68,11 +66,7 @@ router.get('/events/:id', (req, res, next) => {
 
 router.get('/places', (req, res, next) => {
   db.sequelize.query(queries.get_restaurant_list, { raw : true}).then((data) => {
-      
-      res.json(data[0])
-  
-
-   
+      res.json(data[0]) 
   })
   .catch(error => {
     res.send('Error ' + error)
@@ -90,7 +84,6 @@ router.get('/places/pictures/:id', (req, res, next) => {
      }]
   })
   .then(events => {
-    console.log(events)
     res.json(events)
   })
   .catch(error => {
@@ -99,8 +92,6 @@ router.get('/places/pictures/:id', (req, res, next) => {
 })
 
 router.post('/events/', (req, res, next) => {
-  console.log(req.body)
-  // console.log(req)
   Events.create({
     places_table_id_place : req.body.id_place,
     event_name : req.body.event_name,
@@ -109,11 +100,9 @@ router.post('/events/', (req, res, next) => {
     users_table_id_user : req.body.user_id
   })
   .then(() => {
-    console.log('ROW INSERTED')
-    // res.json(req.body)
+    res.send(200)
   })
   .catch(error => {
-    console.log(error)
     res.send('Error: ' + error)
   })
 })
